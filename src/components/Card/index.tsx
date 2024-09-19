@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { ReactNode, useContext } from "react";
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { ShoopingCartContext } from "../../context"
 import { ProductInterface } from "../../interfaces";
 
@@ -8,19 +8,52 @@ type Props = {
 };
 
 function Card({ product }: Props) {
-  const { count, setCount, openProductDetail, setCurrentProduct } = useContext(ShoopingCartContext);
+  const {
+    openProductDetail,
+    setCurrentProduct,
+    addProductToCart,
+    openCheckoutSideMenu,
+    closeProductDetail,
+    closeCheckoutSideMenu,
+    cartProducts,
+  } = useContext(ShoopingCartContext);
 
   const { title, price, category, image} = product;
 
   const addToCart = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    setCount(count + 1);
+    addProductToCart(product);
+    openCheckoutSideMenu();
+    closeProductDetail();
   }
 
   const selectProduct = (): void => {
-    openProductDetail();
     setCurrentProduct(product);
+    openProductDetail();
+    closeCheckoutSideMenu();
   };
+
+  const renderIcon = (): ReactNode => {
+    const isInCart = cartProducts.some((cartProduct) => product.id === cartProduct.id);
+    if (isInCart) {
+      return (
+        <div
+        className="absolute top-0 right-0 flex justify-center items-center bg-black rounded-full w-6 h-6 m-2 border border-black"
+      >
+        <CheckIcon className="h-5 w-5 text-white" />
+      </div>
+      );
+    }
+
+    return (
+      <div
+        className="absolute top-0 right-0 flex justify-center items-center bg-white rounded-full w-6 h-6 m-2 border border-black"
+        onClick={addToCart}
+      >
+        <PlusIcon className="h-5 w-5 text-black" />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -32,12 +65,7 @@ function Card({ product }: Props) {
           {category}
         </span>
         <img className="w-full h-full object-cover object-top rounded-t-lg" src={image} alt={title} />
-        <div
-          className="absolute top-0 right-0 flex justify-center items-center bg-white rounded-full w-6 h-6 m-2"
-          onClick={addToCart}
-        >
-          <PlusIcon className="h-5 w-5 text-black" />
-        </div>
+        {renderIcon()}
       </figure>
       <p className="flex justify-between items-center px-1">
         <span className="text-sm font-light truncate" title={title}>{title}</span>

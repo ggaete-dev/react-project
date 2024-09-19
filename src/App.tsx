@@ -7,12 +7,14 @@ import NotFound from "./pages/NotFound"
 import SignIn from "./pages/SignIn"
 import Navbar from "./components/Navbar"
 import { ShoopingCartProvider } from "./context"
+import CheckoutSideMenu from "./components/CheckouSideMenu"
 
 function AppRoutes() {
   const routes = useRoutes([
     { path: '/', element: <Home /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/my-order', element: <MyOrder /> },
+    { path: '/my-order/:id', element: <MyOrder /> },
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '/*',  element: <NotFound /> },
@@ -28,6 +30,7 @@ function App() {
       <BrowserRouter>
         <AppRoutes />
         <Navbar />
+        <CheckoutSideMenu />
       </BrowserRouter>
     </ShoopingCartProvider>
   )
