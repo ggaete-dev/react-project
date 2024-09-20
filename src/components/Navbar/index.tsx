@@ -22,28 +22,23 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/clothes' className={({ isActive }) => isActive ? activeStyle : undefined}>
-            Clothes
+          <NavLink to='/category/jewelery' className={({ isActive }) => isActive ? activeStyle : undefined}>
+            Jewelery
           </NavLink>
         </li>
         <li>
-          <NavLink to='/electronics' className={({ isActive }) => isActive ? activeStyle : undefined}>
+          <NavLink to='/category/electronics' className={({ isActive }) => isActive ? activeStyle : undefined}>
             Electronics
           </NavLink>
         </li>
         <li>
-          <NavLink to='/furnitures' className={({ isActive }) => isActive ? activeStyle : undefined}>
-            Furnitures
+          <NavLink to='/category/mens-clothing' className={({ isActive }) => isActive ? activeStyle : undefined}>
+            Men's clothing
           </NavLink>
         </li>
         <li>
-          <NavLink to='/toys' className={({ isActive }) => isActive ? activeStyle : undefined}>
-            Toys
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/others' className={({ isActive }) => isActive ? activeStyle : undefined}>
-            Others
+          <NavLink to='/category/womens-clothing' className={({ isActive }) => isActive ? activeStyle : undefined}>
+            Womens'clothing
           </NavLink>
         </li>
       </ul>
