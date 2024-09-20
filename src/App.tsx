@@ -28,7 +28,7 @@ function App() {
 
   return (
     <ShoopingCartProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/react-project">
         <AppRoutes />
         <Navbar />
         <CheckoutSideMenu />
